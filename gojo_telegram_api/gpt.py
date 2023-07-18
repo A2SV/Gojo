@@ -9,7 +9,7 @@ load_dotenv()
 
 openai.api_key = os.getenv('OPEN_AI_API_KEY')
 
-system_file = open("gojo_telegram_api/system_message.txt", "r")
+system_file = open("system_message.txt", "r")
 system_message = system_file.read()
 
 messages = [
@@ -36,7 +36,6 @@ def get_reply(telegram_messages):
         function_to_call = available_functions[function_name]
         function_args = json.loads(response_message["function_call"]["arguments"])
         function_response = function_to_call(function_args)
-        print(function_args)
         temp_messages.append(response_message)
         temp_messages.append({
             "role": "function",

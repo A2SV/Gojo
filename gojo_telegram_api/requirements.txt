@@ -1,2 +1,4 @@
 telethon
 python_dotenv
+openai
+beautifulsoup4
