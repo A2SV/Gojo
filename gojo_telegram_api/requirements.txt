@@ -2,3 +2,4 @@ telethon
 python_dotenv
 openai
 beautifulsoup4
+urllib3==1.26.6 
