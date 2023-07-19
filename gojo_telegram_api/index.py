@@ -1,5 +1,6 @@
 from telethon.sync import TelegramClient, events
 from telethon.tl.types import InputPeerUser
+from telethon.sessions import StringSession
 import os
 from dotenv import load_dotenv
 import gpt
@@ -16,15 +17,14 @@ def get_messages(messages, target_messages):
          role = "user"
       target_messages.append({"role": role, "content": message.message})
 
-
-with TelegramClient('gojo_rent', api_id, api_hash) as client:
+string_session = os.getenv("TELEGRAM_SESSION")
+with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
    print('bot started...')
-
    @client.on(events.NewMessage(incoming=True))
    async def handler(event):
       # print(event)
       messages = []
-      limit = 10
+      limit = 15
       sender = await event.get_input_sender()
       get_messages(await client.get_messages(sender, limit=limit), messages)
       # get_messages(await client.get_messages(user_id, reverse=True, limit=50), messages)
