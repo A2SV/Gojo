@@ -27,7 +27,6 @@ def process_result(listing):
 def get_listings(params):
   url = 'https://gojo.rent/wp-json/wp/v2/listings/'
   response = requests.get(url, params=params)
-  print(params)
   if response.status_code == 200:
       data = response.json()
       return json.dumps(list(map(process_result, data))[:5])
