@@ -23,8 +23,9 @@ def get_messages(messages, target_messages):
       target_messages.append({"role": role, "content": message.message})
 
 
-with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
+with TelegramClient(StringSession(), api_id, api_hash) as client:
    print('bot started...')
+   print(client.session.save())
    @client.on(events.NewMessage(incoming=True))
    async def handler(event):
       messages = []
