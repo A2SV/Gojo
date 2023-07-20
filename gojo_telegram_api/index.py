@@ -1,7 +1,4 @@
 from telethon.sync import TelegramClient, events
-from telethon.tl.types import InputPeerUser
-from telethon.sessions import StringSession
-from telethon import connection
 import os
 from dotenv import load_dotenv
 import gpt
@@ -19,10 +16,6 @@ def get_messages(messages, target_messages):
          role = "user"
       target_messages.append({"role": role, "content": message.message})
 
-string_session = os.getenv("TELEGRAM_SESSION")
-proxy = os.getenv("PROXY")
-proxy_secret = os.getenv("PROXY_SECRET")
-proxy_port = os.getenv("PROXY_PORT")
 with TelegramClient(getSession(), api_id, api_hash) as client:
    print('bot started...')
    saveSession(client.session)
