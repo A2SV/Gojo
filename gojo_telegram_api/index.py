@@ -23,7 +23,7 @@ def get_messages(messages, target_messages):
       target_messages.append({"role": role, "content": message.message})
 
 
-with TelegramClient(StringSession(string_session), api_id, api_hash, proxy = ("socks5", proxy, proxy_port)) as client:
+with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
    print('bot started...')
    @client.on(events.NewMessage(incoming=True))
    async def handler(event):
