@@ -26,7 +26,7 @@ def get_messages(messages, target_messages):
 
 # phone_number = "+251911468779\n43584"
 # sys.stdin = io.StringIO(phone_number)
-with TelegramClient("gojo_rent", api_id, api_hash) as client:
+with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
    print('bot started...')
    print(client.session.save())
    @client.on(events.NewMessage(incoming=True))
