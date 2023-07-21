@@ -5,6 +5,8 @@ from telethon import connection
 import os
 from dotenv import load_dotenv
 import gpt
+import io
+import sys
 load_dotenv()
 
 api_id = os.getenv('API_ID')
@@ -22,8 +24,9 @@ def get_messages(messages, target_messages):
          role = "user"
       target_messages.append({"role": role, "content": message.message})
 
-
-with TelegramClient(StringSession(), api_id, api_hash) as client:
+# phone_number = "+251911468779\n43584"
+# sys.stdin = io.StringIO(phone_number)
+with TelegramClient("gojo_rent", api_id, api_hash) as client:
    print('bot started...')
    print(client.session.save())
    @client.on(events.NewMessage(incoming=True))
