@@ -28,7 +28,6 @@ def get_messages(messages, target_messages):
 # sys.stdin = io.StringIO(phone_number)
 with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
    print('bot started...')
-   print(client.session.save())
    @client.on(events.NewMessage(incoming=True))
    async def handler(event):
       messages = []
