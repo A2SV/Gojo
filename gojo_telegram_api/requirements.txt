@@ -4,3 +4,4 @@ urllib3==1.26.6
 openai
 beautifulsoup4
 python-socks==2.3.0
+db-sqlite3
