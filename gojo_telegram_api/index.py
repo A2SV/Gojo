@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 import gpt
 import io
 import sys
+import session_handler
+import asyncio
 load_dotenv()
 
 api_id = os.getenv('API_ID')
@@ -24,19 +26,24 @@ def get_messages(messages, target_messages):
          role = "user"
       target_messages.append({"role": role, "content": message.message})
 
-# phone_number = "+251911468779\n43584"
-# sys.stdin = io.StringIO(phone_number)
-with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
-   print('bot started...')
-   @client.on(events.NewMessage(incoming=True))
-   async def handler(event):
-      messages = []
-      limit = 15
-      sender = await event.get_input_sender()
-      get_messages(await client.get_messages(sender, limit=limit), messages)
-      # get_messages(await client.get_messages(user_id, reverse=True, limit=50), messages)
-      reply = gpt.get_reply(messages)
-      await client.send_message(sender, reply)
+def main():
+   with TelegramClient(StringSession(string_session), api_id, api_hash) as client:
+      print('bot started...')
+      @client.on(events.NewMessage(incoming=True))
+      async def handler(event):
+         messages = []
+         limit = 15
+         sender = await event.get_input_sender()
+         get_messages(await client.get_messages(sender, limit=limit), messages)
+         # get_messages(await client.get_messages(user_id, reverse=True, limit=50), messages)
+         reply = gpt.get_reply(messages)
+         await client.send_message(sender, reply)
 
-   print('bot running...')
-   client.run_until_disconnected()
+      print('bot running...')
+      client.run_until_disconnected()
+
+if not string_session:
+   string_session = asyncio.run(session_handler.get_session())
+   print(string_session)
+else:
+   main()
