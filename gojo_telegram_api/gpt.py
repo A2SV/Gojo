@@ -18,7 +18,7 @@ messages = [
 
 functions = func.functions
 
-available_functions = {"get_listings": helper.get_listings }
+available_functions = {"get_listings": helper.get_listivo_listings, "add_listing": helper.add_listing_to_sheet }
 
 def get_reply(telegram_messages):
     temp_messages = messages + telegram_messages
@@ -32,6 +32,7 @@ def get_reply(telegram_messages):
     response_message = response["choices"][0]["message"]
 
     if response_message.get("function_call"):
+        print(response_message.get("function_call"))
         function_name = response_message["function_call"]["name"]
         function_to_call = available_functions[function_name]
         function_args = json.loads(response_message["function_call"]["arguments"])

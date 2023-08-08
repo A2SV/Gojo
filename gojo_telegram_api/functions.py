@@ -1,7 +1,7 @@
 functions = [
     {
         "name": "get_listings",
-        "description": "gets a list of house rental listings based on the parameters given",
+        "description": "Gets a list of rental house listings based on the parameters given",
         "parameters": {
             "type": "object",
             "properties": {
@@ -17,43 +17,115 @@ functions = [
                     "type": "string",
                     "description": "Specifies the type of property for filtering house rental listings."
                 },
-                "bedrooms-from": {
-                    "type": "number",
-                    "description": "Defines the minimum number of bedrooms for filtering house rental listings."
-                },
-                "bedrooms-to": {
-                    "type": "number",
-                    "description": "Defines the maximum number of bedrooms for filtering house rental listings."
-                },
+                # "property-features": {
+                #     "type": "array",
+                #     "description": "An array of property feature strings for filtering house rental listings."
+                # },
                 "bathrooms-from": {
                     "type": "number",
                     "description": "Defines the minimum number of bathrooms for filtering house rental listings."
                 },
-                "bathrooms-to": {
+                "bedrooms-from": {
                     "type": "number",
-                    "description": "Defines the maximum number of bathrooms for filtering house rental listings."
+                    "description": "Defines the minimum number of bedrooms for filtering house rental listings."
                 },
-                "land-size-from": {
+                "page": {
                     "type": "number",
-                    "description": "Defines the minimum land size in square meters for filtering house rental listings."
+                    "description": "Specifies the page number of the search results for house rental listings. It would be useful to load more results."
+                }
+            }
+        }
+    },
+    {
+        "name": "add_listing",
+        "description": "Add a rental house listings based on the details given",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "landlord-name": {
+                    "type": "string",
+                    "description": "Defines the name of the person listing the property."
                 },
-                "land-size-to": {
+                "landlord-contact": {
                     "type": "number",
-                    "description": "Defines the maximum land size in square meters for filtering house rental listings."
+                    "description": "Defines the contact information for the landlord listing the property."
                 },
-                "property-size-from": {
+                "price": {
                     "type": "number",
-                    "description": "Defines the minimum property size in square meters for filtering house rental listings."
+                    "description": "Defines the monthly price for renting the property."
                 },
-                "property-size-to": {
-                    "type": "number",
-                    "description": "Defines the maximum property size in square meters for filtering house rental listings."
+                "property-type": {
+                    "type": "string",
+                    "description": "Specifies the type of property being listed (apartments, houses, service houses, and condominiums)."
                 },
-                "pagination": {
+                "description": {
+                    "type": "string",
+                    "description": "Detailed context about a property to be listed that may not fit to specifics. This can include details about the area as well"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Display title about a property less than 50 characters"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "The name of the location the property is at. This can be an area with a city"
+                },
+                "land-size": {
+                    "type": "string",
+                    "description": "Specifies the total area of land on the property (in ft squared)"
+                },
+                "property-size": {
+                    "type": "string",
+                    "description": "Specifies the total area of property within the land (in ft squared)"
+                },
+                # "property-features": {
+                #     "type": "array",
+                #     "description": "An array of property feature strings for the house rental listings."
+                # },
+                # "keywords": {
+                #     "type": "array",
+                #     "description": "Any keywords on the property to be searched with"
+                # },
+                "bathrooms": {
                     "type": "number",
-                    "description": "Specifies the page number of the search results for house rental listings."
+                    "description": "Defines the number of bathrooms in the property"
+                },
+                "bedrooms": {
+                    "type": "number",
+                    "description": "Defines the number of bedrooms in the property"
+                },
+                "telegram-id": {
+                    "type": "string",
+                    "description": "Telegram Id of the user representing the session of communication"
                 }
             }
         }
     }
 ]
+
+print(len("""Thank you, Matewos Mengistu, for providing your information.
+
+I will now generate a listing object for your rental property based on the details you provided. Your listing will be stored as a draft and you will be notified when it has been approved and put on the Gojo platform.
+
+Here is the listing object in JSON format:
+
+json
+{
+  "location": "Arat kilo",
+  "propertyType": "condominium",
+  "description": "It is a spacious house with 2 bedrooms and 1 bathroom. With free WiFi and security cameras.",
+  "title": "A cozy condo in Arat kilo",
+  "bedrooms": 2,
+  "bathrooms": 1,
+  "price": 30000,
+  "owner": {
+    "name": "Matewos Mengistu",
+    "contact": {
+      "phone": "0912367890",
+      "telegram": "@matt"
+    }
+  }
+}
+
+
+Please review the details and let me know if everything looks correct."""))
