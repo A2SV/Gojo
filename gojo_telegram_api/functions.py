@@ -102,30 +102,3 @@ functions = [
         }
     }
 ]
-
-print(len("""Thank you, Matewos Mengistu, for providing your information.
-
-I will now generate a listing object for your rental property based on the details you provided. Your listing will be stored as a draft and you will be notified when it has been approved and put on the Gojo platform.
-
-Here is the listing object in JSON format:
-
-json
-{
-  "location": "Arat kilo",
-  "propertyType": "condominium",
-  "description": "It is a spacious house with 2 bedrooms and 1 bathroom. With free WiFi and security cameras.",
-  "title": "A cozy condo in Arat kilo",
-  "bedrooms": 2,
-  "bathrooms": 1,
-  "price": 30000,
-  "owner": {
-    "name": "Matewos Mengistu",
-    "contact": {
-      "phone": "0912367890",
-      "telegram": "@matt"
-    }
-  }
-}
-
-
-Please review the details and let me know if everything looks correct."""))
