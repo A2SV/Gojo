@@ -29,7 +29,7 @@ functions = [
                     "type": "number",
                     "description": "Defines the minimum number of bedrooms for filtering house rental listings."
                 },
-                "page": {
+                "pagination": {
                     "type": "number",
                     "description": "Specifies the page number of the search results for house rental listings. It would be useful to load more results."
                 }

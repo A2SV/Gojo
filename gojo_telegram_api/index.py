@@ -25,6 +25,7 @@ def get_messages(messages, target_messages):
          role = "assistant"
       else:
          role = "user"
+
       if len(message.message) < char_limit:
          target_messages.append({"role": role, "content": message.message})
 
@@ -36,9 +37,16 @@ def main():
          messages = []
          limit = 30
          sender = await event.get_input_sender()
+         print("new message")
+         await client.send_read_acknowledge(event.chat_id)
          get_messages(await client.get_messages(sender, limit=limit), messages)
-         # get_messages(await client.get_messages(user_id, reverse=True, limit=50), messages)
+
+         post_prompt = "Rate the above sentences relevance to the context information and to previous conversations, from 0 to 9[only integers]. Reply the rating number only"
          reply = gpt.get_reply(messages)
+         reply_rating = gpt.get_reply([{"role": "user", "content": reply+post_prompt}])
+         if not reply_rating.isdigit() or int(reply_rating[0]) < 5:
+            reply = "This is beyond my scope"
+         print(reply_rating)
          await client.send_message(sender, reply)
 
       print('bot running...')
