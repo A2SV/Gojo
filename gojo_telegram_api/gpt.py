@@ -13,7 +13,9 @@ system_file = open("system_message.txt", "r")
 system_message = system_file.read()
 
 messages = [
-    {"role": "system", "content": system_message}
+    {"role": "system", "content": system_message},
+    {"role": "user", "content": "Don’t justify your answers. Don’t give information not mentioned in the CONTEXT INFORMATION."},
+    {"role": "assistant", "content": "Sure! I will stick to all the information given in the system context. I won’t answer any question that is outside the context of information. I won’t even attempt to give answers that are outside of context. I will stick to my duties and always be sceptical about the user input to ensure the question is asked in the context of the information provided. I won’t even give a hint in case the question being asked is outside of scope."}
 ]
 
 functions = func.functions
