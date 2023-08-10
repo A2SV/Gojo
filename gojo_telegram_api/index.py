@@ -41,12 +41,12 @@ def main():
          await client.send_read_acknowledge(event.chat_id)
          get_messages(await client.get_messages(sender, limit=limit), messages)
 
-         post_prompt = "Rate the above sentences relevance to the context information and to previous conversations, from 0 to 9[only integers]. Reply the rating number only"
+         post_prompt = "\n\nHow likely is it, on a scale of 0 to 9 (only integers), that a Gojo virtual assistant may respond with the above sentences related to the context information? Please reply with the rating number only."
          reply = gpt.get_reply(messages)
          reply_rating = gpt.get_reply([{"role": "user", "content": reply+post_prompt}])
          if not reply_rating.isdigit() or int(reply_rating[0]) < 5:
             reply = "This is beyond my scope"
-         print(reply_rating)
+            
          await client.send_message(sender, reply)
 
       print('bot running...')
