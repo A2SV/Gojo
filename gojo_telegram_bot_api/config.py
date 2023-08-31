@@ -8,6 +8,9 @@ class Config(object):
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    TELEGRAM_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+    PORT = os.getenv("TELEGRAM_BOT_PORT", 5000)
+    TELEGRAM_API = "https://api.telegram.org"
 
 class ProductionConfig(Config):
     DEBUG = False
