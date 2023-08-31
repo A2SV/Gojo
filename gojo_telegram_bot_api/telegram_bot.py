@@ -5,8 +5,6 @@ class TelegramBot:
     def __init__(self, token):
         self.token = token
         self.bot_api_url = f"{Config.TELEGRAM_API}/bot{self.token}"
-        print(self.token)
-        print(self.bot_api_url)
 
     def set_webhook(self, host):
         host = host.replace("http", "https")
