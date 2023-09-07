@@ -6,3 +6,4 @@ gojo_telegram_bot_api/migrations
 gojo_telegram_bot_api/__pycache__
 gojo_telegram_bot_api/.env
 *.env
+gojo_telegram_bot_api/gojo-service-account.json
