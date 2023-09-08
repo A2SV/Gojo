@@ -9,7 +9,7 @@ class TelegramBot:
         self.bot_api_url = f"{Config.TELEGRAM_API}/bot{self.token}"
 
     def set_webhook(self, host):
-        host = host.replace("http", "https")
+        host = host.replace("http:", "https:")
         set_webhook_url = f"{self.bot_api_url}/setWebhook?url={host}"
         response = requests.get(set_webhook_url)
         response.raise_for_status()

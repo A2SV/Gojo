@@ -6,13 +6,13 @@ import requests, json
 from bs4 import BeautifulSoup
 # Import function definitions
 from function_definitions import function_definitions
-
+import os
 import pygsheets
 functions = function_definitions
 # Function to save a listing on the Gojo Temporary Storage google sheet for review.
 # the file gojo-service-account.json should exist in the same folder for authentication. (this is generated from google cloud as a key for a service account)
-
-gc = pygsheets.authorize(service_file='gojo-service-account.json')
+print(os.getenv('GOJO_SERVICE_ACCOUNT_PATH'))
+gc = pygsheets.authorize(service_file=os.getenv('GOJO_SERVICE_ACCOUNT_PATH'))
 document = gc.open_by_key('1hwTUgyyRxKNsnoxQXbQZr2KcaYSWI5fVYxiModOnvvM')
 worksheet = document[0]
 columns = ["landlord-name", "landlord-contact", "telegram-id", "property-type", "title", "description", "price", "location", "bathrooms", "bedrooms", "property-features", "keywords"]
