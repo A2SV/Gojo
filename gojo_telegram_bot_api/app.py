@@ -24,6 +24,9 @@ migrate = Migrate(app, db)
 @app.route('/', methods=["GET", "POST"])
 def handle_webhook():
     req = request.json
+    if "message" not in req:
+        return "OK", 200
+
     update = Update(**req)
     chat_id = update.message.chat.id
     history = app.bot.get_chat_history(chat_id)
